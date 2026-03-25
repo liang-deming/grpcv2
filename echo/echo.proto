@@ -1,0 +1,26 @@
+syntax = "proto3";
+package grpc.echo;
+import "google/protobuf/timestamp.proto";
+option go_package = "grpcv2/echo";
+
+message EchoRequest {
+    string message = 1;
+    bytes bytes=2;
+    int32 length=3;
+    google.protobuf.Timestamp timestamp=4;
+}
+
+message EchoResponse {
+    string message = 1;
+    bytes bytes=2;
+    int32 length=3; 
+    google.protobuf.Timestamp timestamp=4;
+}
+
+service EchoService {
+    rpc UnaryEcho (EchoRequest) returns (EchoResponse);
+    rpc ServerStreamingEcho (EchoRequest) returns (stream EchoResponse);
+    rpc ClientStreamingEcho (stream EchoRequest) returns (EchoResponse);
+    rpc BidirectionalStreamingEcho (stream EchoRequest) returns (stream EchoResponse);
+}
+
