@@ -13,7 +13,6 @@ import (
 	"grpcv2/echo-client/client"
 	"grpcv2/echo-client/client_pool"
 	"log"
-	"time"
 
 	"google.golang.org/grpc"
 )
@@ -56,17 +55,19 @@ func main() {
 	defer pool.Put(conn)
 
 	c := echo.NewEchoServiceClient(conn)
-	client.CallUnary(c)
-	time.Sleep(8 * time.Second)
-	client.CallUnary(c)
-	time.Sleep(8 * time.Second)
-	client.CallUnary(c)
-	time.Sleep(8 * time.Second)
-	client.CallUnary(c)
-	time.Sleep(8 * time.Second)
-	client.CallUnary(c)
-	time.Sleep(8 * time.Second)
-	//client.CallServerStream(c)
+	/*
+		client.CallUnary(c)
+		time.Sleep(8 * time.Second)
+		client.CallUnary(c)
+		time.Sleep(8 * time.Second)
+		client.CallUnary(c)
+		time.Sleep(8 * time.Second)
+		client.CallUnary(c)
+		time.Sleep(8 * time.Second)
+		client.CallUnary(c)
+		time.Sleep(8 * time.Second)
+	*/
+	client.CallServerStream(c)
 	//client.CallClientStream(c)
 	//client.CallBidirectional(c)
 
